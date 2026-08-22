@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Services - Motion Tech Ltd{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* --- Base Utility & Typography --- */
+    .base-main-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #333333;
+    }
+
+    .base-sub-heading {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #444444;
+    }
+
+    .base-subtitle-text {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #3CB9E0;
+    }
+
+    .base-text {
+        color: #555555;
+    }
+
+    .base-section-description {
+        font-size: 1.15rem;
+        color: #555555;
+        margin-top: 1rem;
+    }
+
+    /* --- CTA Styling --- */
+    .base-contact-cta {
+        background: linear-gradient(135deg, #3CB9E0, #001829);
+        color: white;
+    }
+
+    .base-cta-inverted {
+        background-color: white;
+        color: #0099FF !important;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .base-cta-inverted:hover {
+        background-color: #f0f0f0;
+    }
+
+    /* --- Service Card Styles --- */
+    .service-card {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        cursor: pointer;
+        border: 1px solid #e0e0e0 !important;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    /* --- Differentiator List Styling --- */
+    .base-value-list {
+        margin-top: 1.5rem;
+        text-align: left;
+        padding-left: 0;
+    }
+
+    .base-value-list li {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        color: #555555;
+        list-style: none;
+    }
+
+    .tech-stack-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tech-stack-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="pt-5" style="background-color: #f7faff;">
+    <div class="container text-center py-5">
+        <p class="base-subtitle-text mb-2">OUR SOLUTIONS</p>
+        <h1 class="base-main-title mb-3">
+            Transforming Your Vision into <span style="color: #3CB9E0;">Digital Success</span>
+        </h1>
+        <p class="base-section-description mx-auto" style="max-width: 800px;">
+            We deliver intelligent, scalable, and high-performance software solutions tailored to solve your most complex business challenges. Our services are designed for maximum impact and future growth.
+        </p>
+    </div>
+</section>
+
+<!-- Exclusive Services -->
+<section class="pt-5" style="background-color: #ffffff;">
+    <div class="container text-center">
+        {% include 'website/components/services.html' %}
+    </div>
+</section>
+
+<!-- Why Your Service Stands Out -->
+<section class="py-5" style="background-color: #f7faff;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="base-main-title mb-3">Why Motion Tech is Your Best Choice</h2>
+                <p class="base-text base-section-description text-start mx-0">
+                    We don't just write code; we build partnerships. Our approach is defined by clarity, commitment, and global-standard quality assurance.
+                </p>
+                <ul class="base-value-list">
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: #0099FF;"></i> Agile Transparency: You receive continuous updates and maintain full visibility into the project timeline and budget.</li>
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: #0099FF;"></i> Scalability First: Solutions are architected to grow with your business, supporting massive traffic increases and feature expansions.</li>
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: #0099FF;"></i> Dedicated Post-Launch: We offer reliable maintenance, scaling, and feature iteration services long after deployment.</li>
+                    <li><i class="bi bi-check-circle-fill me-2" style="color: #0099FF;"></i> ROI-Driven Development: Every feature is prioritized based on its potential for a measurable return on investment.</li>
+                </ul>
+            </div>
+
+            <div class="col-lg-6 text-center">
+                <img src="{% static 'Assets/service.jpg' %}" alt="Service Illustration" class="img-fluid rounded-4 shadow-lg" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technologies Used -->
+<section class="py-5" style="background-color: #ffffff;">
+    <div class="container py-4 text-center">
+        <h2 class="base-main-title mb-4">Our Core Technology Stack</h2>
+        <p class="base-text w-75 mx-auto mb-5">
+            We master leading frameworks and languages to ensure performance, security, and future compatibility for every solution we build.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Frontend & UI -->
+            <div class="col-lg-3 col-md-6">
+                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-laptop fs-3 me-3"></i>
+                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Frontend & UI</h4>
+                    </div>
+                    <p class="base-text">React, Angular, Vue.js, Blazor, Tailwind CSS, SASS</p>
+                </div>
+            </div>
+
+            <!-- Backend & API -->
+            <div class="col-lg-3 col-md-6">
+                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-server fs-3 me-3"></i>
+                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Backend & API</h4>
+                    </div>
+                    <p class="base-text">.NET Core, Node.js (Express), Python (Django/Flask), Java (Spring)</p>
+                </div>
+            </div>
+
+            <!-- Mobile & Cross-Platform -->
+            <div class="col-lg-3 col-md-6">
+                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-phone fs-3 me-3"></i>
+                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Mobile & Cross-Platform</h4>
+                    </div>
+                    <p class="base-text">React Native, Flutter, Swift/Kotlin (Native), Xamarin/MAUI</p>
+                </div>
+            </div>
+
+            <!-- Cloud & Data -->
+            <div class="col-lg-3 col-md-6">
+                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-cloud-check fs-3 me-3"></i>
+                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Cloud & Data</h4>
+                    </div>
+                    <p class="base-text">Azure, AWS, Docker, Kubernetes, SQL Server, PostgreSQL, MongoDB</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA Banner -->
+<div class="container base-contact-cta py-5 text-center rounded-4 shadow-lg my-5 position-relative"
+     style="overflow:hidden;">
+    <div class="position-absolute top-0 start-0 w-100 h-100"
+         style="background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.15), transparent 70%);">
+    </div>
+
+    <div class="position-relative">
+        <h2 class="base-main-title mb-3 text-white">Ready to Start Your Digital Journey?</h2>
+        <p class="base-subtitle-text mb-4 text-light" style="color:#FFF;">Request a free quote or book a consultation to discuss your next project.</p>
+
+        <a href="{% url 'contact' %}" class="base-btn-secondary rounded-pill fw-bold px-5 base-cta-inverted">
+            <i class="bi bi-calendar-check me-2"></i> Book a Consultation
+        </a>
+    </div>
+</div>
+{% endblock %}

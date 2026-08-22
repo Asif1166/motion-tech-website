@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="home-page" style="padding-top:0px;">
+    <!-- Hero Section -->
+    <section class="trust-hero">
+        {% if heroes %}
+            {% with first_hero=heroes|first %}
+            <div class="trust-hero-container">
+                <!-- Left Content -->
+                <div class="trust-hero-text">
+                    <h1 class="trust-hero-title">
+                        Crafting Digital Solutions<br />
+                        <span>That Businesses Trust</span>
+                    </h1>
+                    
+                    <p class="trust-hero-subtitle">
+                        {{ first_hero.short_description|default:"" }}
+                    </p>
+                    
+                    <div class="trust-hero-buttons">
+                        <a href="{% url 'services' %}" class="trust-btn-primary">Get Started</a>
+                        <a href="{% url 'contact' %}" class="trust-btn-secondary">Contact Us</a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <h3>4+ Years</h3>
+                            <p>Experience</p>
+                        </div>
+                        <div class="trust-badge">
+                            <h3>100+ Projects</h3>
+                            <p>Delivered</p>
+                        </div>
+                        <div class="trust-badge">
+                            <h3>50+ Clients</h3>
+                            <p>Worldwide</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Image -->
+                <div class="trust-hero-image">
+                    {% if first_hero.image %}
+                        <img src="{{ first_hero.image.url }}" alt="Software Development" />
+                    {% endif %}
+                </div>
+            </div>
+            {% endwith %}
+        {% else %}
+            <p>Loading...</p>
+        {% endif %}
+    </section>
+    
+    <!-- About Section -->
+    <section class="base-about-section mt-lg-5">
+        {% if about %}
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-5 mb-md-0">
+                        <div class="base-video-wrapper position-relative rounded-4 overflow-hidden shadow-lg">
+                            {% if about.image %}
+                                <img src="{{ about.image.url }}" alt="{{ about.title }}" class="img-fluid w-100" />
+                            {% endif %}
+                            
+                            {% if about.video_url %}
+                                <button type="button" class="base-play-btn position-absolute top-50 start-50 translate-middle rounded-circle"
+                                        data-bs-toggle="modal" data-bs-target="#aboutVideoModal">
+                                    <i class="bi bi-play-fill fs-2 text-white"></i>
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 text-center text-md-start">
+                        {% if about.title %}
+                            <h2 class="base-main-title">{{ about.title }}</h2>
+                        {% endif %}
+                        
+                        {% if about.description %}
+                            <p class="base-text">{{ about.description|linebreaks }}</p>
+                        {% endif %}
+                        
+                        <div class="d-flex flex-wrap gap-3 mb-4">
+                            <div class="base-about-stat text-center">
+                                <h4 class="fw-bold mb-0">4+</h4>
+                                <small class="base-text">Years of Experience</small>
+                            </div>
+                            <div class="base-about-stat text-center">
+                                <h4 class="fw-bold mb-0">100+</h4>
+                                <small class="base-text">Projects Completed</small>
+                            </div>
+                            <div class="base-about-stat text-center">
+                                <h4 class="fw-bold mb-0">50+</h4>
+                                <small class="base-text">Happy Clients</small>
+                            </div>
+                        </div>
+                        
+                        <a href="{% url 'about' %}" class="base-btn-primary btn-lg">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            
+            {% if about.video_url %}
+                <div class="modal fade" id="aboutVideoModal" tabindex="-1" aria-labelledby="aboutVideoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content border-0 rounded-4 overflow-hidden">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="{{ about.video_url|youtube_embed }}"
+                                        title="{{ about.title }}"
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <p class="base-text text-center">Loading...</p>
+        {% endif %}
+    </section>
+
+    <!-- Services Section -->
+    <div class="mt-lg-5">
+        {% include 'website/components/services.html' %}
+    </div>
+
+    <!-- Products Section -->
+    <div>
+        {% include 'website/components/products.html' %}
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div>
+        {% include 'website/components/why_choose_us.html' %}
+    </div>
+
+    <!-- Blog Section -->
+    <div class="bg-light text-center pb-lg-3">
+        {% if blogs %}
+            {% include 'website/components/blog_home.html' with blogs=blogs %}
+        {% endif %}
+        <a href="{% url 'blog' %}" class="team-link">
+            View All
+            <span class="arrow"></span>
+        </a>
+    </div>
+
+    <!-- Team Section -->
+    <div class="text-center">
+        {% if team_members %}
+            <section class="py-5">
+                <div class="container">
+                    <h2 class="base-main-title">Meet Our Team</h2>
+                    <p class="base-text mb-5 mx-auto" style="max-width: 700px;">
+                        Our team of dedicated professionals is committed to delivering the best solutions and services.
+                        Together, we bring expertise, creativity, and passion to every project.
+                    </p>
+
+                    <div class="row g-4">
+                        {% for member in team_members %}
+                            <div class="col-md-4">
+                                <div class="team-card position-relative overflow-hidden rounded shadow-sm">
+                                    {% if member.photo %}
+                                        <img src="{{ member.photo.url }}"
+                                             class="img-fluid w-100"
+                                             style="height:300px; object-fit:cover;"
+                                             alt="{{ member.name }}" />
+                                    {% else %}
+                                        <img src="{% static 'Assets/default-avatar.png' %}"
+                                             class="img-fluid w-100"
+                                             style="height:300px; object-fit:cover;"
+                                             alt="{{ member.name }}" />
+                                    {% endif %}
+
+                                    <!-- Name & Role -->
+                                    <div class="position-absolute bottom-0 w-100 text-center bg-dark bg-opacity-50 py-2 text-white">
+                                        <h5 class="mb-0">{{ member.name }}</h5>
+                                        <small>{{ member.role }}</small>
+                                    </div>
+
+                                    <!-- Social Icons on hover -->
+                                    <div class="teamoverlay d-flex justify-content-center align-items-center">
+                                        <div class="social-icons text-center">
+                                            {% if member.facebook_url %}
+                                                <a href="{{ member.facebook_url }}" target="_blank" class="text-white me-2 fs-5">
+                                                    <i class="bi bi-facebook"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if member.instagram_url %}
+                                                <a href="{{ member.instagram_url }}" target="_blank" class="text-white me-2 fs-5">
+                                                    <i class="bi bi-instagram"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if member.linkedin_url %}
+                                                <a href="{{ member.linkedin_url }}" target="_blank" class="text-white fs-5">
+                                                    <i class="bi bi-linkedin"></i>
+                                                </a>
+                                            {% endif %}
+                                            {% if member.github_url %}
+                                                <a href="{{ member.github_url }}" target="_blank" class="text-white ms-2 fs-5">
+                                                    <i class="bi bi-github"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        <a href="{% url 'team' %}" class="team-link">
+            View Full Team
+            <span class="arrow"></span>
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Team Link Styling */
+    .team-link {
+        position: relative;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #3CB9E0;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.3s ease;
+    }
+
+    .team-link:hover {
+        color: #34a1c1;
+    }
+
+    .team-link .arrow {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #1b6ec2;
+        border-bottom: 2px solid #1b6ec2;
+        transform: rotate(-45deg);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .team-link:hover .arrow {
+        transform: rotate(-45deg) translateX(4px);
+        border-color: #34a1c1;
+    }
+</style>
+{% endblock %}

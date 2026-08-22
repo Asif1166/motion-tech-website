@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}{{ blog.title }} - Motion Tech Ltd{% endblock %}
+
+{% block extra_css %}
+<style>
+    .blog-content {
+        line-height: 1.75;
+        font-size: 1rem;
+        color: #21343a;
+    }
+
+    .badge-blog-tag {
+        background: #3CB9E0;
+        color: #000;
+        font-weight: 600;
+        border-radius: 0.35rem;
+        padding: 0.25rem 0.45rem;
+        font-size: 0.72rem;
+        display: inline-block;
+        margin-right: 0.35rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .base-main-title {
+        font-size: 2.25rem;
+        font-weight: 700;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <article>
+                    <h1 class="base-main-title mb-3">{{ blog.title }}</h1>
+                    
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        {% if blog.author_image %}
+                            <img src="{{ blog.author_image.url }}" alt="{{ blog.author_name|default:'Author' }}" class="rounded-circle" style="width:48px; height:48px; object-fit:cover;" />
+                        {% else %}
+                            <img src="https://via.placeholder.com/48" alt="{{ blog.author_name|default:'Author' }}" class="rounded-circle" style="width:48px; height:48px; object-fit:cover;" />
+                        {% endif %}
+                        <div>
+                            <div class="fw-bold">{{ blog.author_name|default:"Admin" }}</div>
+                            <small class="text-muted">{{ blog.created_at|date:"M d, Y" }} • {{ blog.read_time_minutes }} min read</small>
+                        </div>
+                    </div>
+
+                    {% if blog.image %}
+                        <img src="{{ blog.image.url }}" class="img-fluid rounded mb-4" style="object-fit:cover; width:100%; max-height:420px;" alt="{{ blog.title }}" />
+                    {% endif %}
+
+                    {% if blog.category %}
+                        <div class="mb-3">
+                            <span class="badge bg-primary">{{ blog.category }}</span>
+                        </div>
+                    {% endif %}
+
+                    <div class="blog-content mb-4">
+                        {% if blog.long_description %}
+                            {{ blog.long_description|linebreaks }}
+                        {% else %}
+                            <p class="text-muted">{{ blog.short_description|linebreaks }}</p>
+                        {% endif %}
+                    </div>
+
+                    {% if blog.tags %}
+                        <div class="mt-4 mb-4">
+                            <strong>Tags:</strong>
+                            {% for tag in blog.tags|split:"," %}
+                                <span class="badge-blog-tag">{{ tag|trim }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    {% if blog.video_url %}
+                        <div class="mb-4">
+                            <h5>Related Video</h5>
+                            <div class="ratio ratio-16x9">
+                                <iframe src="{{ blog.video_url|youtube_embed }}" 
+                                        title="{{ blog.title }}"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="mt-4 d-flex gap-3">
+                        <a href="{% url 'blog' %}" class="btn btn-primary">
+                            <i class="bi bi-arrow-left me-2"></i> Back to Blog
+                        </a>
+                        {% if blog.category %}
+                            <a href="{% url 'blog' %}?category={{ blog.category }}" class="btn btn-outline-primary">
+                                More from {{ blog.category }}
+                            </a>
+                        {% endif %}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

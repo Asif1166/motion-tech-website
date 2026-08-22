@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Motion Tech Ltd{% endblock %}</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Global CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'Assets/CompanyLogo.png' %}" />
+    
+    <!-- Calendly -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="sticky-top">
+        {% include 'includes/navbar.html' %}
+    </header>
+
+    <!-- Main Content -->
+    <main class="my-4" style="padding-top: 30px;">
+        <!-- Messages -->
+        {% if messages %}
+            <div class="container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+    
+    <!-- JS: Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Calendly -->
+    <script src="https://assets.calendly.com/assets/external/widget.js"></script>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/8801601693138?text=Hi%20I%20want%20to%20schedule%20a%20consultation."
+       target="_blank"
+       class="whatsapp-float"
+       aria-label="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    
+    <!-- Calendly Button -->
+    <button id="calendlyBtn" class="calendly-float" aria-label="Schedule a meeting">
+        <i class="bi bi-calendar-event"></i>
+    </button>
+    <script>
+        document.getElementById("calendlyBtn").addEventListener("click", function () {
+            Calendly.initPopupWidget({
+                url: 'https://calendly.com/hafizul-islam/30min'
+            });
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+

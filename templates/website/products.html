@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Products - Motion Tech Ltd{% endblock %}
+
+{% block extra_css %}
+<style>
+    /*=========================Product Section==================*/
+    .product-section {
+        background: #ffffff;
+    }
+
+    .product-title {
+        color: #006a4e;
+        font-weight: 700;
+    }
+
+    .product-card {
+        background: #ffffff;
+        padding: 28px 20px;
+        border-radius: 14px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        border: 1px solid #e9e9e9;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+        border-color: #3CB9E0;
+    }
+
+    .product-card h5 {
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #222;
+    }
+
+    .product-card p {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 20px;
+        flex-grow: 1;
+    }
+
+    .product-icon i {
+        font-size: 45px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .product-card.hrms .product-icon i {
+        color: #2E7D32; /* Green */
+    }
+
+    .product-card.crm .product-icon i {
+        color: #EF6C00; /* Orange */
+    }
+
+    .product-card.pos .product-icon i {
+        color: #1E88E5; /* Blue */
+    }
+
+    .product-card.erp .product-icon i {
+        color: #8E24AA; /* Purple */
+    }
+
+    .base-main-title {
+        font-size: 2.25rem;
+        font-weight: 700;
+    }
+
+    .base-text {
+        color: #495057;
+        font-size: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5 product-section bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="base-main-title">Our Products</h2>
+            <p class="base-text mx-auto" style="max-width: 700px;">
+                Explore our innovative solutions designed to boost efficiency, sales, and growth.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- HRMS -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card hrms">
+                    <div class="product-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h5>HRMS</h5>
+                    <p class="text-muted">HR operations — attendance, payroll, performance tracking.</p>
+                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- CRM -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card crm">
+                    <div class="product-icon">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+                    <h5>CRM</h5>
+                    <p class="text-muted">Manage leads, clients, and sales pipelines with automation.</p>
+                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- POS -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card pos">
+                    <div class="product-icon">
+                        <i class="bi bi-cash-stack"></i>
+                    </div>
+                    <h5>POS System</h5>
+                    <p class="text-muted">Handle sales, inventory, and reporting efficiently.</p>
+                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
+                </div>
+            </div>
+
+            <!-- ERP -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card erp">
+                    <div class="product-icon">
+                        <i class="bi bi-building-check"></i>
+                    </div>
+                    <h5>ERP Solution</h5>
+                    <p class="text-muted">Connect HR, finance, sales & inventory in one suite.</p>
+                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

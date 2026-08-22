@@ -1,0 +1,767 @@
+﻿/* ====================NavBar section===================*/
+.navLinkItem {
+    list-style: none;
+}
+
+.navLink {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s, transform 0.2s;
+}
+
+    .navLink::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        left: 0;
+        bottom: -4px;
+        background-color: #3CB9E0;
+        transition: width 0.3s;
+    }
+
+    .navLink:hover {
+        color: #006a4e;
+        transform: translateY(-2px);
+    }
+
+        .navLink:hover::after {
+            width: 100%;
+        }
+
+/* ====================Home section===================*/
+.trust-hero {
+    width: 100%;
+    padding: 90px 0 60px;
+    background: linear-gradient(135deg, #001829, #00324d);
+    color: #fff;
+}
+
+.trust-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 20px;
+    gap: 50px;
+}
+
+/* Left Text Section */
+.trust-hero-title {
+    font-size: 3rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+    .trust-hero-title span {
+        color: #3CB9E0;
+    }
+
+.trust-hero-subtitle {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 480px;
+}
+
+/* Buttons */
+.trust-hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.trust-btn-primary,
+.trust-btn-secondary {
+    padding: 12px 32px;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* Primary Button */
+.trust-btn-primary {
+    background: #3CB9E0;
+    color: #000000;
+}
+
+    .trust-btn-primary:hover {
+        background: #0edcff;
+        color: #000000;
+        transform: translateY(-3px);
+    }
+
+/* Secondary Button */
+.trust-btn-secondary {
+    border: 2px solid #3CB9E0;
+    color: #3CB9E0;
+}
+
+    .trust-btn-secondary:hover {
+        background: rgba(14, 220, 255, 0.15);
+        border: 2px solid #0edcff;
+        color: #0edcff;
+        transform: translateY(-3px);
+    }
+
+/* Trust Badges */
+.trust-badges {
+    display: flex;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.trust-badge {
+    text-align: left;
+    border-left: 3px solid #0edcff;
+    padding-left: 12px;
+    opacity: 0.9;
+}
+
+    .trust-badge h3 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    .trust-badge p {
+        margin: 0;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+/* Right Image */
+.trust-hero-image img {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .trust-hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .trust-hero-title {
+        font-size: 2.4rem;
+    }
+
+    .trust-badges {
+        justify-content: center;
+    }
+}
+
+/*================== About Section ====================*/
+.base-about-stat {
+    padding: 1.2rem 1.5rem; /* Increased padding */
+    border-radius: 12px;
+    min-width: 130px;
+    text-align: center;
+    background-color: #FFFFFF;
+    color: #333333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+    border: 1px solid #EEEEEE;
+}
+
+    .base-about-stat:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); 
+        border-color: #3CB9E0; 
+    }
+
+/* Stat Accent Styling */
+.base-stat-1 {
+    border-bottom: 4px solid #3CB9E0; /* Brand Cyan accent */
+}
+
+.base-stat-2 {
+    border-bottom: 4px solid #3CB9E0; /* Darker accent */
+}
+.base-stat-3 {
+    background-color: #3CB9E0;
+    color: #FFFFFF; /* White text */
+    border: none;
+    border-bottom: 4px solid #004358;
+}
+
+    .base-stat-3 h3, .base-stat-3 p {
+        color: #FFFFFF !important;
+    }
+
+/* Stat Text */
+.base-about-stat h3 {
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    font-size: 2.2rem;
+}
+
+.base-about-stat p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+
+/* --- Video Section --- */
+.base-video-wrapper {
+    position: relative;
+    z-index: 1; /* Ensure video wrapper is above surrounding elements if any */
+}
+
+/* Play Button (YouTube Red-inspired, but softened) */
+.base-play-btn {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #FF4D4D, #E63946); /* Softer Red Gradient */
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+    .base-play-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 30px rgba(255, 77, 77, 0.6);
+    }
+
+.base-video-wrapper img {
+    border-radius: 1rem;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    object-fit: cover;
+}
+
+    .base-video-wrapper img:hover {
+        transform: scale(1.02); 
+        filter: brightness(0.85);
+    }
+
+/* --- Section Heading/Text Overrides --- */
+
+/* For the main H1 "About Motion Tech" */
+.base-section-description {
+    color: #666666;
+    font-size: 1.25rem; /* Slightly larger */
+    line-height: 1.7;
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* For the H3 title (Right side of content block) */
+.base-sub-heading {
+    color: #333333;
+    font-size: 2rem; /* Slightly larger */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* For the paragraph below H3 */
+.base-sub-description {
+    color: #666666;
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* --- CTA Section Styling --- */
+.base-contact-cta {
+    background: linear-gradient(135deg, #0099FF, #0077CC);
+    color: #FFFFFF;
+}
+
+/* Inverted CTA button (white background on dark banner) */
+.base-cta-inverted {
+    background-color: #FFFFFF !important;
+    color: #0099FF !important;
+    border: 1px solid #FFFFFF !important;
+    transition: all 0.3s ease;
+}
+
+    .base-cta-inverted:hover {
+        background-color: #DDDDDD !important; /* Slight gray hover */
+        transform: translateY(-2px);
+    }
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .base-about-stat {
+        padding: 1rem 1rem;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 768px) {
+    .base-section-heading {
+        font-size: 2.2rem;
+    }
+
+    .base-section-description {
+        font-size: 1.1rem;
+        width: 95% !important;
+    }
+
+    .base-sub-heading {
+        font-size: 1.7rem;
+    }
+
+    .base-about-stat {
+        min-width: unset;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/*========================Service Section==================*/
+/* --- Base Utility & Typography (Required for a unified look) --- */
+
+
+.base-sub-heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #444444;
+}
+
+.base-text {
+    color: #555555;
+}
+
+.base-section-description {
+    font-size: 1.15rem;
+    color: #555555;
+    margin-top: 1rem;
+}
+
+/* --- CTA Styling (Consistent with About Page) --- */
+.base-contact-cta {
+    background: linear-gradient(135deg, #0099FF, #0077CC); /* Brand Cyan Gradient */
+    color: white;
+}
+
+.base-cta-inverted {
+    background-color: white;
+    color: #0099FF !important;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+    .base-cta-inverted:hover {
+        background-color: #f0f0f0;
+    }
+
+.base-link {
+    color: #0099FF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .base-link:hover {
+        color: #0077CC;
+        text-decoration: underline;
+    }
+
+/* --- Service Card Styles (Exclusive Services - Section 2) --- */
+.service-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+    border: 1px solid #e0e0e0 !important; 
+}
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        border-color: #3CB9E0 !important;
+    }
+
+/* --- Differentiator List Styling --- */
+.base-value-list {
+    margin-top: 1.5rem;
+    text-align: left;
+    padding-left: 0;
+}
+
+    .base-value-list li {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+        color: #555555;
+        list-style: none;
+    }
+
+/* --- Modern Tech Stack Card Styling (Technology Stack - Section 4) --- */
+.tech-stack-card {
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #e0e0e0;
+}
+
+    .tech-stack-card:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        border-color: #3CB9E0; /* Highlight border on hover */
+        transform: translateY(-5px); /* NEW: Subtle lift on hover */
+    }
+
+    .tech-stack-card i {
+        color: #0099FF;
+    }
+
+/*=========================Product Section==================*/
+.product-section {
+    background: #ffffff;
+}
+
+.product-title {
+    color: #006a4e;
+    font-weight: 700;
+}
+
+.product-card {
+    background: #ffffff;
+    padding: 28px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e9e9e9;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+        border-color: #3CB9E0;
+    }
+
+    .product-card h5 {
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #222;
+    }
+
+    .product-card p {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+.product-icon i {
+    font-size: 45px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.product-card.hrms .product-icon i {
+    color: #2E7D32; /* Green */
+}
+
+.product-card.crm .product-icon i {
+    color: #EF6C00; /* Orange */
+}
+
+.product-card.pos .product-icon i {
+    color: #1E88E5; /* Blue */
+}
+
+.product-card.erp .product-icon i {
+    color: #8E24AA; /* Purple */
+}
+
+
+/*=======================Who Choose us Section=================*/
+.why-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Added border-color transition */
+    border: 1px solid #e0e0e0; /* Added base border for hover effect to work */
+}
+
+    .why-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        border-color: #3CB9E0;
+    }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/*========================Blog Section=================*/
+/* Overlay that appears on hover */
+.blog-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+}
+
+.blog-hover-card:hover .blog-card-overlay {
+    opacity: 1;
+}
+
+/* Overlay button */
+
+/*======================Team Section=================*/
+.team-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+    .team-card .teamoverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    .team-card:hover .teamoverlay {
+        opacity: 1;
+    }
+.social-icons a {
+    color: #fff;
+    transition: color 0.2s;
+}
+    .social-icons a:hover {
+        color: #0d6efd; /* Bootstrap primary */
+    }
+
+/*====================Login section===================*/
+.login-page {
+}
+.login-card {
+    background-color: #fff;
+    border-radius: 1rem;
+}
+.login-icon {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+    border-color: #3CB9E0;
+}
+
+
+/* Title styling */
+.base-title-color {
+    color: #333333;
+}
+.hover-color {
+    transition: background-color 0.3s ease;
+    background-color: #f5f5f5;
+}
+
+.main-title {
+    color: #333333; /* Very dark gray, softer than pure black but still strong */
+    font-size: 3rem; /* Example size, adjust for H1 */
+    font-weight: 700; /* Bold */
+    text-align: center;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+/* Universal button style */
+.btn {
+    padding: 0.6rem 1.2rem; /* Comfortable padding */
+    font-size: 1rem; /* Normal readable font size */
+    font-weight: 500; /* Slightly bold */
+    color: #ffffff; /* Text color */
+    background-color: #006a4e; /* Dark gray color */
+    border: none; /* No border */
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover */
+    display: inline-block; /* For inline layout */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline for links */
+}
+    /* Hover effect for button */
+    .btn:hover {
+        color: #ffffff;
+        background-color: #005740; /* Slightly darker blue on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+    }
+
+/*Contact page*/
+.base-title-color {
+    color: #333333; /* Dark text for titles */
+}
+
+/* --- Form Input Focus & Hover Styling --- */
+.form-control-lg {
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem 1.25rem;
+}
+
+    .form-control-lg:focus {
+        border-color: #3CB9E0;
+        box-shadow: 0 0 0 0.25rem rgba(0, 153, 255, 0.25);
+    }
+
+/* --- Custom Primary Button --- */
+.base-btn-primary {
+    background: #3CB9E0;
+    color: #000000;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .base-btn-primary:hover {
+        background: #0edcff;
+        color: #000000;
+        transform: translateY(-2px);
+    }
+
+/*widgets*/
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background-color: #25D366;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+        color: #ffffff;
+    }
+
+
+/* Calendly badge position */
+.calendly-badge-widget {
+    bottom: 90px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+}
+.calendly-float {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background-color: #3cb9e0;
+    color: #ffffff;
+    border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .calendly-float:hover {
+        transform: scale(1.1);
+    }
+
+
+
+/* --- Team View Arrow Design (Link Hover Effect) --- */
+.team-link {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #3CB9E0; /* primary link color */
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; /* space between text and arrow */
+    transition: color 0.3s ease;
+}
+
+    .team-link:hover { /* Hover effect for text color */
+        color: var(--brand-cyan-dark);
+    }
+
+    .team-link .arrow {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #1b6ec2;
+        border-bottom: 2px solid #1b6ec2;
+        transform: rotate(-45deg);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .team-link:hover .arrow { /* Hover effect for arrow movement and color */
+        transform: rotate(-45deg) translateX(4px);
+        border-color: var(--brand-cyan-dark);
+    }
+
+/*Logo*/
+.jatra-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    font-size: 1.5rem;
+}
+
+.jatra-text {
+    color: #333333;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+}
+
+.jatra-dot {
+    width: 0.6em;
+    height: 0.6em;
+    background-color: #3CB9E0;
+    border-radius: 50%;
+    margin: 0 0.3em;
+    display: inline-block;
+    vertical-align: middle;
+    font-style: italic;
+}
+
+.software-text {
+    color: #000;
+    font-weight: 400;
+    font-size: 0.9em;
+    font-family: Arial, sans-serif;
+}
