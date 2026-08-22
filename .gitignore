@@ -1,6 +1,9 @@
 venv
+env/
 media/
 *.pyc
 __pycache__/
 .DS_Store
 .env
+db.sqlite3
+staticfiles/
