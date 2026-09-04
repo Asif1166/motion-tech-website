@@ -13,7 +13,13 @@
             {{ about.journey_title|default:'Building the Digital Future with Motion Tech' }}
         </h1>
         <p class="base-section-description mx-auto" style="max-width: 800px;">
-            {{ about.journey_description|default:about.description }}
+            {% if about and about.journey_description %}
+                {{ about.journey_description }}
+            {% elif about and about.description %}
+                {{ about.description }}
+            {% else %}
+                Motion Tech Ltd was founded in 2024 with a singular focus to transform challenging business problems into elegant, scalable, and intuitive digital solutions. Since our inception, we have partnered with over 50+ clients globally, delivering more than 100 innovative projects across various industries, from FinTech to E-commerce. We are driven by a passion for technology and a deep commitment to our clients' success, treating every engagement as the beginning of a shared journey.
+            {% endif %}
         </p>
     </div>
 </section>

@@ -8,9 +8,43 @@ from api.models import (
 from .forms import ContactForm
 
 
+def get_default_about():
+    return AboutSection(
+        title='Empowering Businesses Through Modern Technology',
+        description='Motion Tech Ltd was founded in 2024 with a singular focus to transform challenging business problems into elegant, scalable, and intuitive digital solutions. Since our inception, we have partnered with over 50+ clients globally, delivering more than 100 innovative projects across various industries, from FinTech to E-commerce.',
+        journey_subtitle='OUR JOURNEY SO FAR',
+        journey_title='Building the Digital Future with Motion Tech',
+        journey_description='Motion Tech Ltd was founded in 2024 with a singular focus to transform challenging business problems into elegant, scalable, and intuitive digital solutions. Since our inception, we have partnered with over 50+ clients globally, delivering more than 100 innovative projects across various industries, from FinTech to E-commerce. We are driven by a passion for technology and a deep commitment to our clients\' success, treating every engagement as the beginning of a shared journey.',
+        mission_title='Our Mission',
+        mission_description='To empower businesses with innovative, reliable, and scalable software solutions that accelerate growth, improve efficiency, and deliver exceptional user experiences.',
+        vision_title='Our Vision',
+        vision_description='To become a leading global technology company recognized for excellence in innovation, quality, and customer success—building digital solutions that shape the future.',
+        stat_experience='4+',
+        stat_projects='100+',
+        stat_clients='50+'
+    )
+
+
+def get_default_hero():
+    return HeroSection(
+        title='Crafting Digital Solutions That Businesses Trust',
+        subtitle='Innovative Technology & Software Development Partner',
+        short_description='We build modern, scalable web, mobile, and enterprise applications tailored to your business needs with cutting-edge technologies.',
+        experience_stat='4+ Years',
+        projects_stat='100+ Projects',
+        clients_stat='50+ Clients',
+        primary_btn_text='Get Started',
+        primary_btn_url='/services/',
+        secondary_btn_text='Contact Us',
+        secondary_btn_url='/contact/'
+    )
+
+
 def home(request):
-    heroes = HeroSection.objects.all()[:1]
-    about = AboutSection.objects.first()
+    heroes = list(HeroSection.objects.all()[:1])
+    if not heroes:
+        heroes = [get_default_hero()]
+    about = AboutSection.objects.first() or get_default_about()
     services = Service.objects.filter(is_active=True)
     products = Product.objects.filter(is_active=True)
     why_choose_us = WhyChooseUs.objects.filter(is_active=True)
@@ -39,7 +73,7 @@ def home(request):
 
 
 def about(request):
-    about = AboutSection.objects.first()
+    about = AboutSection.objects.first() or get_default_about()
     core_values = CoreValue.objects.filter(is_active=True)
     why_choose_us = WhyChooseUs.objects.filter(is_active=True)
     products = Product.objects.filter(is_active=True)
