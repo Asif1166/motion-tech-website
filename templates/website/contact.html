@@ -34,7 +34,7 @@
                         <i class="bi bi-geo-alt-fill fs-3 text-primary me-3" style="color:#3CB9E0 !important;"></i>
                         <div>
                             <h6 class="fw-semibold mb-0">Our Office</h6>
-                            <p class="text-muted mb-0">Dhaka, Bangladesh</p>
+                            <p class="text-muted mb-0">{{ site_settings.address|default:'Dhaka, Bangladesh' }}</p>
                         </div>
                     </div>
 
@@ -42,7 +42,9 @@
                         <i class="bi bi-telephone-fill fs-3 text-success me-3" style="color:#25D366 !important;"></i>
                         <div>
                             <h6 class="fw-semibold mb-0">Call Us</h6>
-                            <p class="text-muted mb-0">+8801601693138</p>
+                            <p class="text-muted mb-0">
+                                <a href="tel:{{ site_settings.phone }}" class="text-decoration-none text-muted">{{ site_settings.phone|default:'+8801601693138' }}</a>
+                            </p>
                         </div>
                     </div>
 
@@ -50,17 +52,30 @@
                         <i class="bi bi-envelope-fill fs-3 text-danger me-3" style="color:#d9534f !important;"></i>
                         <div>
                             <h6 class="fw-semibold mb-0">Email</h6>
-                            <p class="text-muted mb-0">info@jatrasoft.com</p>
+                            <p class="text-muted mb-0">
+                                <a href="mailto:{{ site_settings.email }}" class="text-decoration-none text-muted">{{ site_settings.email|default:'info@jatrasoft.com' }}</a>
+                            </p>
                         </div>
                     </div>
 
                     <hr class="my-4" style="opacity:0.15;">
 
                     <div class="d-flex mt-2 justify-content-center">
-                        <a href="#" class="text-primary me-3 fs-4" style="color:#4267B2 !important;"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-info me-3 fs-4" style="color:#1DA1F2 !important;"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-danger me-3 fs-4" style="color:#C13584 !important;"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-dark fs-4" style="color:#0A66C2 !important;"><i class="bi bi-linkedin"></i></a>
+                        {% if site_settings.facebook_url %}
+                            <a href="{{ site_settings.facebook_url }}" target="_blank" rel="noopener" class="text-primary me-3 fs-4" style="color:#4267B2 !important;"><i class="bi bi-facebook"></i></a>
+                        {% endif %}
+                        {% if site_settings.twitter_url %}
+                            <a href="{{ site_settings.twitter_url }}" target="_blank" rel="noopener" class="text-info me-3 fs-4" style="color:#1DA1F2 !important;"><i class="bi bi-twitter"></i></a>
+                        {% endif %}
+                        {% if site_settings.instagram_url %}
+                            <a href="{{ site_settings.instagram_url }}" target="_blank" rel="noopener" class="text-danger me-3 fs-4" style="color:#C13584 !important;"><i class="bi bi-instagram"></i></a>
+                        {% endif %}
+                        {% if site_settings.linkedin_url %}
+                            <a href="{{ site_settings.linkedin_url }}" target="_blank" rel="noopener" class="text-dark fs-4" style="color:#0A66C2 !important;"><i class="bi bi-linkedin"></i></a>
+                        {% endif %}
+                        {% if site_settings.github_url %}
+                            <a href="{{ site_settings.github_url }}" target="_blank" rel="noopener" class="text-dark ms-3 fs-4"><i class="bi bi-github"></i></a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

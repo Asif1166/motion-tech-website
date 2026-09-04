@@ -1,0 +1,62 @@
+{% load static %}
+{% if testimonials %}
+<section class="py-5 testimonials-section" style="background-color: #f7faff;">
+    <div class="container text-center">
+        <p class="base-subtitle-text mb-2">TESTIMONIALS</p>
+        <h2 class="base-main-title mb-3">What Our Clients Say</h2>
+        <p class="base-text mb-5 mx-auto" style="max-width: 700px;">
+            Trusted by businesses worldwide. Hear directly from our partners about our collaboration and results.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+            {% for item in testimonials %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 p-4 border-0 shadow-sm rounded-4 bg-white text-start d-flex flex-column justify-content-between testimonial-card">
+                        <div>
+                            <!-- Star Rating -->
+                            <div class="text-warning mb-3 fs-6">
+                                {% for i in "12345" %}
+                                    <i class="bi bi-star-fill"></i>
+                                {% endfor %}
+                            </div>
+                            
+                            <!-- Quote -->
+                            <p class="text-muted fst-italic mb-4" style="line-height: 1.6;">
+                                "{{ item.quote }}"
+                            </p>
+                        </div>
+
+                        <!-- Client Info -->
+                        <div class="d-flex align-items-center pt-3 border-top">
+                            {% if item.logo %}
+                                <img src="{{ item.logo.url }}" alt="{{ item.client_name }}" class="rounded-circle me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                            {% else %}
+                                <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                    {{ item.client_name|slice:":1" }}
+                                </div>
+                            {% endif %}
+                            <div>
+                                <h6 class="fw-bold mb-0 text-dark">{{ item.client_name }}</h6>
+                                {% if item.company_name %}
+                                    <small class="text-muted">{{ item.company_name }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .testimonial-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.1) !important;
+    }
+</style>
+{% endif %}
+

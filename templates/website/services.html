@@ -143,49 +143,19 @@
         </p>
 
         <div class="row g-4 justify-content-center">
-            <!-- Frontend & UI -->
-            <div class="col-lg-3 col-md-6">
-                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="bi bi-laptop fs-3 me-3"></i>
-                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Frontend & UI</h4>
+            {% for stack in tech_stacks %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="{{ stack.icon }} fs-3 me-3 text-primary"></i>
+                            <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">{{ stack.name }}</h4>
+                        </div>
+                        <p class="base-text">{{ stack.technologies }}</p>
                     </div>
-                    <p class="base-text">React, Angular, Vue.js, Blazor, Tailwind CSS, SASS</p>
                 </div>
-            </div>
-
-            <!-- Backend & API -->
-            <div class="col-lg-3 col-md-6">
-                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="bi bi-server fs-3 me-3"></i>
-                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Backend & API</h4>
-                    </div>
-                    <p class="base-text">.NET Core, Node.js (Express), Python (Django/Flask), Java (Spring)</p>
-                </div>
-            </div>
-
-            <!-- Mobile & Cross-Platform -->
-            <div class="col-lg-3 col-md-6">
-                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="bi bi-phone fs-3 me-3"></i>
-                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Mobile & Cross-Platform</h4>
-                    </div>
-                    <p class="base-text">React Native, Flutter, Swift/Kotlin (Native), Xamarin/MAUI</p>
-                </div>
-            </div>
-
-            <!-- Cloud & Data -->
-            <div class="col-lg-3 col-md-6">
-                <div class="p-4 rounded-4 h-100 shadow-sm text-start tech-stack-card">
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="bi bi-cloud-check fs-3 me-3"></i>
-                        <h4 class="base-sub-heading mb-0 fs-5" style="color: #333333;">Cloud & Data</h4>
-                    </div>
-                    <p class="base-text">Azure, AWS, Docker, Kubernetes, SQL Server, PostgreSQL, MongoDB</p>
-                </div>
-            </div>
+            {% empty %}
+                <p class="text-muted">No tech stacks listed.</p>
+            {% endfor %}
         </div>
     </div>
 </section>

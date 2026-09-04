@@ -3,7 +3,11 @@
     <div class="container">
         <!-- Brand -->
         <a class="navbar-brand d-flex align-items-center gap-1 fw-bold fs-4" href="{% url 'home' %}">
-            <img src="{% static 'Assets/logo.png' %}" alt="Motion Tech Logo" style="height: 40px; width: auto;">
+            {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.company_name }}" style="height: 40px; width: auto;">
+            {% else %}
+                <img src="{% static 'Assets/logo.png' %}" alt="{{ site_settings.company_name|default:'Motion Tech' }}" style="height: 40px; width: auto;">
+            {% endif %}
         </a>
 
         <!-- Toggler for mobile -->
@@ -18,6 +22,8 @@
                 <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'home' %}">Home</a></li>
                 <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'about' %}">About</a></li>
                 <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'services' %}">Services</a></li>
+                <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'products' %}">Products</a></li>
+                <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'team' %}">Team</a></li>
                 <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'blog' %}">Blogs</a></li>
                 <li class="navLinkItem"><a class="nav-link navLink text-dark fw-medium" href="{% url 'contact' %}">Contact</a></li>
             </ul>

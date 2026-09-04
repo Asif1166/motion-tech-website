@@ -8,12 +8,12 @@
 <!-- Hero Section -->
 <section class="pt-5" style="background-color: #f7faff;">
     <div class="container text-center py-5">
-        <p class="base-subtitle-text mb-2">OUR JOURNEY SO FAR</p>
+        <p class="base-subtitle-text mb-2">{{ about.journey_subtitle|default:'OUR JOURNEY SO FAR' }}</p>
         <h1 class="base-main-title mb-3">
-            Building the Digital Future with <span style="color: #3CB9E0;">Motion Tech</span>
+            {{ about.journey_title|default:'Building the Digital Future with Motion Tech' }}
         </h1>
         <p class="base-section-description mx-auto" style="max-width: 800px;">
-            Motion Tech Ltd was founded in 2024 with a singular focus to transform challenging business problems into elegant, scalable, and intuitive digital solutions. Since our inception, we have partnered with over 50+ clients globally, delivering more than 100 innovative projects across various industries, from FinTech to E-commerce. We are driven by a passion for technology and a deep commitment to our clients' success, treating every engagement as the beginning of a shared journey.
+            {{ about.journey_description|default:about.description }}
         </p>
     </div>
 </section>
@@ -29,16 +29,16 @@
                     </h3>
 
                     <div class="mb-4 p-3 rounded" style="border-left: 4px solid #3CB9E0; background-color: #f7faff;">
-                        <h4 class="fw-bold mb-1 base-text" style="color: #000000;">Our Mission</h4>
+                        <h4 class="fw-bold mb-1 base-text" style="color: #000000;">{{ about.mission_title|default:'Our Mission' }}</h4>
                         <p class="base-text base-sub-description mb-0">
-                            To empower businesses with innovative, reliable, and scalable software solutions that accelerate growth, improve efficiency, and deliver exceptional user experiences.
+                            {{ about.mission_description }}
                         </p>
                     </div>
 
                     <div class="mb-4 p-3 rounded" style="border-left: 4px solid #3CB9E0; background-color: #f7f7f7;">
-                        <h4 class="fw-bold mb-1 base-text" style="color: #000000;">Our Vision</h4>
+                        <h4 class="fw-bold mb-1 base-text" style="color: #000000;">{{ about.vision_title|default:'Our Vision' }}</h4>
                         <p class="base-text base-sub-description mb-0">
-                            To become a leading global technology company recognized for excellence in innovation, quality, and customer success—building digital solutions that shape the future.
+                            {{ about.vision_description }}
                         </p>
                     </div>
 
@@ -52,10 +52,12 @@
                     <div class="base-video-wrapper position-relative rounded-4 overflow-hidden shadow-lg">
                         {% if about.image %}
                             <img src="{{ about.image.url }}" alt="{{ about.title }}" class="img-fluid w-100" />
+                        {% else %}
+                            <img src="{% static 'Assets/about.jpg' %}" alt="{{ about.title }}" class="img-fluid w-100" />
                         {% endif %}
                         {% if about.video_url %}
                             <button class="base-play-btn position-absolute top-50 start-50 translate-middle rounded-circle shadow"
-                                    data-bs-toggle="modal" data-bs-target="#aboutVideoModal">
+                                    data-bs-toggle="modal" data-bs-target="#aboutVideoModal" aria-label="Play video">
                                 <i class="bi bi-play-fill fs-2 text-white"></i>
                             </button>
                         {% endif %}
@@ -64,38 +66,34 @@
             </div>
 
             <!-- Core Values -->
+            {% if core_values %}
             <div class="text-center mb-5 pt-4">
                 <h2 class="base-main-title mb-4">Our Core Values</h2>
             </div>
 
             <div class="row text-center mb-5 justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="base-about-stat base-stat-1 shadow">
-                        <i class="bi bi-lightbulb-fill fs-1 mb-2" style="color:#0099FF;"></i>
-                        <h3 class="fw-bold">Innovation</h3>
-                        <p class="base-text">We constantly seek new technologies and creative approaches to solve complex problems.</p>
+                {% for val in core_values %}
+                    <div class="col-md-4 mb-4">
+                        <div class="base-about-stat {{ val.stat_class|default:'base-stat-1' }} shadow">
+                            <i class="{{ val.icon }} fs-1 mb-2" style="color: {{ val.icon_color }};"></i>
+                            <h3 class="fw-bold">{{ val.title }}</h3>
+                            <p class="base-text">{{ val.description }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="base-about-stat base-stat-2 shadow">
-                        <i class="bi bi-hand-thumbs-up-fill fs-1 mb-2" style="color:#555555;"></i>
-                        <h3 class="fw-bold">Integrity</h3>
-                        <p class="base-text">Honesty and transparency are the foundations of all our client relationships.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="base-about-stat base-stat-3 shadow">
-                        <i class="bi bi-rocket-takeoff-fill fs-1 mb-2" style="color:#FFFFFF;"></i>
-                        <h3 class="fw-bold">Excellence</h3>
-                        <p class="base-text">We strive for the highest quality in code, design, and user experience delivery.</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
+            {% endif %}
         {% else %}
             <p class="base-text text-center text-danger">About section not available.</p>
         {% endif %}
     </div>
 </section>
+
+<!-- Team Section on About Page -->
+{% include 'website/components/team_section.html' with team_members=team_members show_view_all=False %}
+
+<!-- Testimonials Section -->
+{% include 'website/components/testimonials.html' %}
 
 <!-- Why Choose Us Section -->
 <div class="base-light-bg py-5">

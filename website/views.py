@@ -1,28 +1,59 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db import models
-from api.models import HeroSection, AboutSection, BlogPost, TeamMember
+from api.models import (
+    HeroSection, AboutSection, BlogPost, TeamMember, Testimonial,
+    Service, Product, WhyChooseUs, CoreValue, TechStack, ContactMessage
+)
 from .forms import ContactForm
 
 
 def home(request):
     heroes = HeroSection.objects.all()[:1]
     about = AboutSection.objects.first()
-    blogs = BlogPost.objects.all().order_by('-created_at')[:6]  # Latest 6 blogs for home page
-    team_members = TeamMember.objects.all()[:4]  # First 4 team members for home page
+    services = Service.objects.filter(is_active=True)
+    products = Product.objects.filter(is_active=True)
+    why_choose_us = WhyChooseUs.objects.filter(is_active=True)
+    blogs = BlogPost.objects.all().order_by('-created_at')[:6]
+    
+    # Featured team members or all if not set
+    team_members = TeamMember.objects.filter(is_featured=True)
+    if not team_members.exists():
+        team_members = TeamMember.objects.all()[:6]
+    else:
+        team_members = team_members[:6]
+
+    testimonials = Testimonial.objects.filter(is_published=True)
     
     context = {
         'heroes': heroes,
         'about': about,
+        'services': services,
+        'products': products,
+        'why_choose_us': why_choose_us,
         'blogs': blogs,
         'team_members': team_members,
+        'testimonials': testimonials,
     }
     return render(request, 'website/home.html', context)
 
 
 def about(request):
     about = AboutSection.objects.first()
-    context = {'about': about}
+    core_values = CoreValue.objects.filter(is_active=True)
+    why_choose_us = WhyChooseUs.objects.filter(is_active=True)
+    products = Product.objects.filter(is_active=True)
+    team_members = TeamMember.objects.all()
+    testimonials = Testimonial.objects.filter(is_published=True)
+
+    context = {
+        'about': about,
+        'core_values': core_values,
+        'why_choose_us': why_choose_us,
+        'products': products,
+        'team_members': team_members,
+        'testimonials': testimonials,
+    }
     return render(request, 'website/about.html', context)
 
 
@@ -79,19 +110,33 @@ def team(request):
 
 
 def services(request):
-    return render(request, 'website/services.html')
+    services_list = Service.objects.filter(is_active=True)
+    tech_stacks = TechStack.objects.all()
+    context = {
+        'services': services_list,
+        'tech_stacks': tech_stacks,
+    }
+    return render(request, 'website/services.html', context)
 
 
 def products(request):
-    return render(request, 'website/products.html')
+    products_list = Product.objects.filter(is_active=True)
+    context = {
+        'products': products_list,
+    }
+    return render(request, 'website/products.html', context)
 
 
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Here you can save to database or send email
-            # For now, just show success message
+            ContactMessage.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                subject=form.cleaned_data['subject'],
+                message=form.cleaned_data['message']
+            )
             messages.success(request, 'Thank you for your message! We will get back to you soon.')
             return redirect('contact')
     else:

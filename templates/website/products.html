@@ -91,54 +91,21 @@
             </p>
         </div>
 
-        <div class="row g-4">
-            <!-- HRMS -->
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card hrms">
-                    <div class="product-icon">
-                        <i class="bi bi-people-fill"></i>
+        <div class="row g-4 justify-content-center">
+            {% for product in products %}
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card {{ product.category_tag }}">
+                        <div class="product-icon">
+                            <i class="{{ product.icon }}" style="color: {{ product.icon_color }};"></i>
+                        </div>
+                        <h5>{{ product.title }}</h5>
+                        <p class="text-muted">{{ product.short_description }}</p>
+                        <a href="{{ product.demo_url|default:'/contact/' }}" class="base-btn-primary">Learn More</a>
                     </div>
-                    <h5>HRMS</h5>
-                    <p class="text-muted">HR operations — attendance, payroll, performance tracking.</p>
-                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
                 </div>
-            </div>
-
-            <!-- CRM -->
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card crm">
-                    <div class="product-icon">
-                        <i class="bi bi-bar-chart-fill"></i>
-                    </div>
-                    <h5>CRM</h5>
-                    <p class="text-muted">Manage leads, clients, and sales pipelines with automation.</p>
-                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <!-- POS -->
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card pos">
-                    <div class="product-icon">
-                        <i class="bi bi-cash-stack"></i>
-                    </div>
-                    <h5>POS System</h5>
-                    <p class="text-muted">Handle sales, inventory, and reporting efficiently.</p>
-                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
-                </div>
-            </div>
-
-            <!-- ERP -->
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card erp">
-                    <div class="product-icon">
-                        <i class="bi bi-building-check"></i>
-                    </div>
-                    <h5>ERP Solution</h5>
-                    <p class="text-muted">Connect HR, finance, sales & inventory in one suite.</p>
-                    <a href="{% url 'products' %}" class="base-btn-primary">View Details</a>
-                </div>
-            </div>
+            {% empty %}
+                <p class="text-muted text-center">No products found at this moment.</p>
+            {% endfor %}
         </div>
     </div>
 </section>

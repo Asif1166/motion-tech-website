@@ -1,90 +1,26 @@
 <section class="py-5 why-choose-us">
     <div class="container text-center">
         <h2 class="base-main-title">Why Choose Us</h2>
-        <p class="mb-5 base-text">
+        <p class="mb-5 base-text mx-auto" style="max-width: 700px;">
             Empowering businesses with reliable, scalable, and innovative digital solutions.
         </p>
 
-        <div class="row g-4 mb-4">
-            <!-- Custom Software -->
-            <div class="col-md-4">
-                <div class="why-card h-100 p-4 rounded-4 shadow-lg position-relative bg-white transition">
-                    <div class="mb-3 icon-container text-primary fs-1">
-                        <i class="bi bi-laptop"></i>
+        <div class="row g-4 justify-content-center">
+            {% for item in why_choose_us %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="why-card h-100 p-4 rounded-4 shadow-sm position-relative bg-white transition text-start border-0">
+                        <div class="mb-3 icon-container fs-1 {{ item.icon_color|default:'text-primary' }}">
+                            <i class="{{ item.icon }}"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2 text-dark">{{ item.title }}</h5>
+                        <p class="text-muted mb-0">
+                            {{ item.description }}
+                        </p>
                     </div>
-                    <h5 class="fw-semibold mb-2">Custom Software</h5>
-                    <p class="text-muted">
-                        We build tailor-made applications to solve your specific business challenges.
-                    </p>
                 </div>
-            </div>
-
-            <!-- Experienced Team -->
-            <div class="col-md-4">
-                <div class="why-card h-100 p-4 rounded-4 shadow-lg position-relative bg-white transition">
-                    <div class="mb-3 icon-container text-success fs-1">
-                        <i class="bi bi-award"></i>
-                    </div>
-                    <h5 class="fw-semibold mb-2">Experienced Team</h5>
-                    <p class="text-muted">
-                        Our engineers bring deep technical expertise and industry experience.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Scalable Solutions -->
-            <div class="col-md-4">
-                <div class="why-card h-100 p-4 rounded-4 shadow-lg position-relative bg-white transition">
-                    <div class="mb-3 icon-container text-warning fs-1">
-                        <i class="bi bi-graph-up-arrow"></i>
-                    </div>
-                    <h5 class="fw-semibold mb-2">Scalable Solutions</h5>
-                    <p class="text-muted">
-                        We develop robust systems that grow with your business needs.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-4">
-            <!-- 24/7 Support -->
-            <div class="col-md-4">
-                <div class="why-card h-100 p-4 rounded-4 shadow-lg position-relative bg-white transition">
-                    <div class="mb-3 icon-container text-danger fs-1">
-                        <i class="bi bi-headset"></i>
-                    </div>
-                    <h5 class="fw-semibold mb-2">24/7 Support</h5>
-                    <p class="text-muted">
-                        Our dedicated support team is available around the clock to assist you.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Creative Ideas -->
-            <div class="col-md-4">
-                <div class="why-card h-100 p-4 rounded-4 shadow-lg position-relative bg-white transition">
-                    <div class="mb-3 icon-container text-info fs-1">
-                        <i class="bi bi-lightbulb"></i>
-                    </div>
-                    <h5 class="fw-semibold mb-2">Creative Ideas</h5>
-                    <p class="text-muted">
-                        We turn innovative ideas into practical, engaging digital solutions.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Fastest Delivery -->
-            <div class="col-md-4">
-                <div class="why-card h-100 p-4 rounded-4 shadow-lg position-relative bg-white transition">
-                    <div class="mb-3 icon-container text-warning fs-1">
-                        <i class="bi bi-lightning-charge"></i>
-                    </div>
-                    <h5 class="fw-semibold mb-2">Fastest Delivery</h5>
-                    <p class="text-muted">
-                        We ensure timely delivery without compromising on quality and performance.
-                    </p>
-                </div>
-            </div>
+            {% empty %}
+                <p class="text-muted">No items available.</p>
+            {% endfor %}
         </div>
     </div>
 </section>

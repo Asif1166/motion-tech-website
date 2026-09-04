@@ -2,10 +2,15 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import User, HeroSection, AboutSection, BlogPost, TeamMember, Testimonial
+from .models import (
+    User, HeroSection, AboutSection, BlogPost, TeamMember, Testimonial,
+    Service, Product, WhyChooseUs, CoreValue, TechStack, SiteSetting, ContactMessage
+)
 from .serializers import (
     UserSerializer, HeroSectionSerializer, AboutSectionSerializer,
-    BlogPostSerializer, TeamMemberSerializer, TestimonialSerializer
+    BlogPostSerializer, TeamMemberSerializer, TestimonialSerializer,
+    ServiceSerializer, ProductSerializer, WhyChooseUsSerializer,
+    CoreValueSerializer, TechStackSerializer, SiteSettingSerializer, ContactMessageSerializer
 )
 from rest_framework.parsers import MultiPartParser, FormParser
 
@@ -98,6 +103,67 @@ class TestimonialViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         context['request'] = self.request
         return context
+
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    queryset = Service.objects.filter(is_active=True)
+    serializer_class = ServiceSerializer
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.filter(is_active=True)
+    serializer_class = ProductSerializer
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+
+class WhyChooseUsViewSet(viewsets.ModelViewSet):
+    queryset = WhyChooseUs.objects.filter(is_active=True)
+    serializer_class = WhyChooseUsSerializer
+    permission_classes = [AllowAny]
+
+
+class CoreValueViewSet(viewsets.ModelViewSet):
+    queryset = CoreValue.objects.filter(is_active=True)
+    serializer_class = CoreValueSerializer
+    permission_classes = [AllowAny]
+
+
+class TechStackViewSet(viewsets.ModelViewSet):
+    queryset = TechStack.objects.all()
+    serializer_class = TechStackSerializer
+    permission_classes = [AllowAny]
+
+
+class SiteSettingViewSet(viewsets.ModelViewSet):
+    queryset = SiteSetting.objects.all()
+    serializer_class = SiteSettingSerializer
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+
+class ContactMessageViewSet(viewsets.ModelViewSet):
+    queryset = ContactMessage.objects.all()
+    serializer_class = ContactMessageSerializer
+    permission_classes = [AllowAny]
+
 
 
 # Auth views

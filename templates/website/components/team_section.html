@@ -1,0 +1,127 @@
+{% load static %}
+<section class="py-5 team-section">
+    <div class="container text-center">
+        <h2 class="base-main-title">Meet Our Team</h2>
+        <p class="base-text mb-5 mx-auto" style="max-width: 700px;">
+            Our team of dedicated professionals is committed to delivering the best solutions and services.
+            Together, we bring expertise, creativity, and passion to every project.
+        </p>
+
+        {% if team_members %}
+            <div class="row g-4 justify-content-center">
+                {% for member in team_members %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm h-100 bg-white border-0">
+                            {% if member.photo %}
+                                <img src="{{ member.photo.url }}"
+                                     class="img-fluid w-100 team-img"
+                                     style="height:320px; object-fit:cover;"
+                                     alt="{{ member.name }}" />
+                            {% else %}
+                                <div class="w-100 d-flex flex-column align-items-center justify-content-center bg-light team-img" style="height:320px;">
+                                    <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mb-3" style="width: 100px; height: 100px;">
+                                        <i class="bi bi-person-fill fs-1 text-primary"></i>
+                                    </div>
+                                    <h5 class="fw-bold mb-1">{{ member.name }}</h5>
+                                    <span class="badge bg-primary-subtle text-primary">{{ member.role }}</span>
+                                </div>
+                            {% endif %}
+
+                            <!-- Name & Role Bottom Banner -->
+                            <div class="position-absolute bottom-0 w-100 text-center bg-dark bg-opacity-75 py-2 px-3 text-white">
+                                <h5 class="mb-0 fw-bold fs-6">{{ member.name }}</h5>
+                                <small class="text-light opacity-90">{{ member.role }}</small>
+                            </div>
+
+                            <!-- Hover Overlay with Social Icons & Bio -->
+                            <div class="teamoverlay d-flex flex-column justify-content-center align-items-center p-3 text-center">
+                                <h5 class="text-white fw-bold mb-1">{{ member.name }}</h5>
+                                <p class="text-info small mb-2">{{ member.role }}</p>
+                                {% if member.bio %}
+                                    <p class="text-white-50 small mb-3 px-2" style="font-size: 0.85rem; max-height: 80px; overflow: hidden;">
+                                        {{ member.bio }}
+                                    </p>
+                                {% endif %}
+                                <div class="social-icons d-flex gap-3 justify-content-center">
+                                    {% if member.facebook_url %}
+                                        <a href="{{ member.facebook_url }}" target="_blank" rel="noopener" class="team-social-btn text-white fs-5" aria-label="Facebook">
+                                            <i class="bi bi-facebook"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if member.instagram_url %}
+                                        <a href="{{ member.instagram_url }}" target="_blank" rel="noopener" class="team-social-btn text-white fs-5" aria-label="Instagram">
+                                            <i class="bi bi-instagram"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if member.linkedin_url %}
+                                        <a href="{{ member.linkedin_url }}" target="_blank" rel="noopener" class="team-social-btn text-white fs-5" aria-label="LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if member.github_url %}
+                                        <a href="{{ member.github_url }}" target="_blank" rel="noopener" class="team-social-btn text-white fs-5" aria-label="GitHub">
+                                            <i class="bi bi-github"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            {% if show_view_all and team_members.count > 0 %}
+                <div class="mt-4 text-center">
+                    <a href="{% url 'team' %}" class="team-link">
+                        View Full Team
+                        <span class="arrow"></span>
+                    </a>
+                </div>
+            {% endif %}
+        {% else %}
+            <p class="text-muted text-center py-4">No team members added yet.</p>
+        {% endif %}
+    </div>
+</section>
+
+<style>
+    .team-card {
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        position: relative;
+    }
+    .team-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+    }
+    .team-card .teamoverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 24, 41, 0.88);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .team-card:hover .teamoverlay {
+        opacity: 1;
+        visibility: visible;
+    }
+    .team-social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        transition: all 0.25s ease;
+    }
+    .team-social-btn:hover {
+        background: #3CB9E0;
+        color: #fff !important;
+        transform: scale(1.15);
+    }
+</style>
+
