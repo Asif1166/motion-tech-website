@@ -265,8 +265,8 @@ class SiteSetting(models.Model):
 
     class Meta:
         db_table = 'api_sitesetting'
-        verbose_name = 'Site Setting'
-        verbose_name_plural = 'Site Settings'
+        verbose_name = 'Site Setting & Contact Info'
+        verbose_name_plural = 'Site Settings & Contact Info (Footer)'
         ordering = ['id']
 
     def __str__(self):

@@ -91,6 +91,23 @@ class TechStackAdmin(admin.ModelAdmin):
 @admin.register(SiteSetting)
 class SiteSettingAdmin(admin.ModelAdmin):
     list_display = ('company_name', 'email', 'phone', 'address')
+    fieldsets = (
+        ('General Information', {
+            'fields': ('company_name', 'site_title', 'tagline', 'logo', 'favicon')
+        }),
+        ('Contact Us (Footer & Contact Page)', {
+            'description': 'These details appear in the Contact Us section in the footer, header, and Contact page.',
+            'fields': ('address', 'email', 'phone', 'whatsapp_number', 'calendly_url')
+        }),
+        ('Our Mission & Copyright (Footer)', {
+            'description': 'These details appear in the Our Mission column and the bottom copyright bar in the footer.',
+            'fields': ('footer_about', 'copyright_text')
+        }),
+        ('Follow Us (Social Media Links)', {
+            'description': 'Social profile URLs displayed under the Follow Us section in the footer.',
+            'fields': ('facebook_url', 'twitter_url', 'instagram_url', 'linkedin_url', 'github_url')
+        }),
+    )
 
 
 @admin.register(ContactMessage)
